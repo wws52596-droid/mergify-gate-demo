@@ -1,0 +1,14 @@
+queue_rules:
+  - name: default
+    queue_conditions:
+      - base=main
+    merge_conditions:
+      - check-success=mandatory-ci-check   # the gate that must not be forgeable
+
+pull_request_rules:
+  - name: auto queue
+    conditions:
+      - base=main
+    actions:
+      queue:
+        name: default
